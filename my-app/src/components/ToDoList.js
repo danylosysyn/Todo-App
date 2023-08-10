@@ -1,9 +1,15 @@
-import { React } from "react";
+import React from "react";
+import { ToDoElement } from "./ToDo";
 
-const ToDoList = () => {
+const ToDoList = ({ toDo, setToDo }) => {
     return (
         <div className="todo-container">
-            <ul className="todo-list"></ul>
+            <ul className="todo-list">
+
+                {toDo.map(todo => (
+                    <ToDoElement text={todo.text} key={todo.id} setToDo={setToDo} toDo={toDo} todo={todo}/>
+                ))}
+            </ul>
         </div>
     )
 }
