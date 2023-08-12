@@ -5,10 +5,32 @@ import ToDoList from "./components/ToDoList"
 
 
 function App() {
-  const [inputText, setInputText] = useState("")
+  const [inputText, setInputText] = useState("");
   const [toDo, setToDo] = useState([]);
-  const [status, setStatus] = useState("all")
-  const [filterTodos, setFilterTodos] = useState([])
+  const [status, setStatus] = useState("all");
+  const [filterTodos, setFilterTodos] = useState([]);
+
+  // useEffect(() => {
+  //   getLocal()
+  // }, []);
+
+  useEffect(() => {
+
+    saveLocal()
+  }, [status, toDo]);
+  
+  const saveLocal = () => {
+    localStorage.setItem("toDo", JSON.stringify(toDo))
+  }
+
+  const getLocal = () => {
+    if(localStorage.getItem("toDo") === null){
+      localStorage.setItem("toDo", JSON.stringify([]))
+    }else{
+      let localData = JSON.parse(localStorage.getItem("toDo", JSON.stringify(toDo)));
+      setToDo(localData)
+  }
+  }
 
   return (
     <div className="App">
